@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 import logo from '../images/logo.svg'
 
@@ -9,13 +9,13 @@ const HeaderWrapper = styled.div`
   img {
     margin-bottom: 0;
   }
-`;
+`
 
 const HeaderContainer = styled.div`
   margin: 0 auto;
   max-width: 960px;
   padding: 0.3rem;
-`;
+`
 
 const Header = ({ siteTitle }) => (
   <HeaderWrapper>

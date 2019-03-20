@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Img from 'gatsby-image'
-import { Spring } from 'react-spring/renderprops'
+import { Spring } from 'react-spring'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import { StaticQuery, graphql } from 'gatsby'
@@ -25,12 +25,10 @@ const Layout = ({ children, location }) => (
         site {
           siteMetadata {
             title
-            stewbosh
+            description
           }
         }
-        file(relativePath: {
-          regex: "/bg/"
-        }) {
+        file(relativePath: { regex: "/bg/" }) {
           childImageSharp {
             fluid(maxWidth: 1000) {
               ...GatsbyImageSharpFluid_tracedSVG
@@ -54,30 +52,23 @@ const Layout = ({ children, location }) => (
           <html lang="en" />
         </Helmet>
         <Header siteTitle={data.site.siteMetadata.title} />
-
-        <Spring from={{ height: location.pathname === '/' ? 100 : 200 }} to={{height: location.pathname === '/' ? 200 : 100 }} >
+        <Spring
+          from={{ height: location.pathname === '/' ? 100 : 200 }}
+          to={{ height: location.pathname === '/' ? 200 : 100 }}
+        >
           {styles => (
-            <div style={{overflow: 'hidden', ...styles}}>
+            <div style={{ overflow: 'hidden', ...styles }}>
               <Img fluid={data.file.childImageSharp.fluid} />
             </div>
           )}
         </Spring>
-
+        {/* {location.pathname === '/' && (
+          
+        )} */}
         <MainLayout>
-          <main>
-            {children}
-          </main>
-
-        <Archive />
-
+          <div>{children}</div>
+          <Archive />
         </MainLayout>
-        <footer>
-            © {new Date().getFullYear()}, Built with
-            {` `}
-            <a href="https://www.gatsbyjs.org">Gatsby</a>
-          </footer>
-
-
       </>
     )}
   />
